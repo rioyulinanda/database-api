@@ -1,15 +1,16 @@
-import { IsNumber, IsString, IsOptional } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { IsString, IsOptional, IsDateString } from 'class-validator';
 
 export class UpdateShoplistDto {
-  @IsNumber()
   @IsOptional()
-  usersId: number;
+  @IsString({ each: true })
+  items?: string[];
 
-  @IsString()
   @IsOptional()
-  items: string;
+  @IsString()
+  name?: string;
 
-  @IsString()
   @IsOptional()
-  name: string;
+  @IsDateString()
+  createdAt?: Date;
 }

@@ -1,0 +1,41 @@
+### GET
+GET http://localhost:3000/shoplist
+
+### GET BY ID
+GET http://localhost:3000/shoplist/1
+
+### POST
+POST http://localhost:3000/shoplist/
+Content-Type: application/json
+Authorization: Bearer my-auth-token
+
+{
+  "items": "Vegetables",
+  "name": "Spinach",
+  "usersId": 6
+}
+
+
+
+### DELETE
+DELETE http://localhost:3000/shoplist/6
+
+### PUT
+PUT http://localhost:3000/shoplist/5
+Content-Type: application/json
+Authorization: Bearer my-auth-token
+
+{
+  "id": 5,
+  "name": "Tenderloin Beef",
+  "items": "Meat"
+}
+
+### PATCH
+PATCH http://localhost:3000/shoplist/4
+Content-Type: application/json
+Authorization: Bearer my-auth-token
+
+{
+  "name": "Strawberry"
+}

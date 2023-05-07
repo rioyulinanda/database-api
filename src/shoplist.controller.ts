@@ -37,27 +37,37 @@ export class ShoplistController {
     return this.ShoplistService.post(CreateShoplistDto);
   }
 
-  //   @Delete(':id')
-  //   async deleteshoplist(@Param('id') id: string) {
-  //     const shoplistId = parseInt(id, 10);
-  //     // return await this.ShoplistService.delete(shoplistId);
-  //   }
+  @Delete(':id')
+  async deleteshoplist(@Param('id') id: string) {
+    const shoplistId = parseInt(id, 10);
+    return await this.ShoplistService.delete(shoplistId);
+  }
 
-  //   @Put(':id')
-  //   async updateshoplist(
-  //     @Param('id') id: string,
-  //     @Body() UpdateShoplistDto: UpdateShoplistDto,
-  //   ) {
-  //     const shoplistId = parseInt(id, 10);
-  //     return await this.ShoplistService.put(shoplistId, UpdateShoplistDto);
-  //   }
+  @Put(':id')
+  async updateshoplist(
+    @Param('id') id: string,
+    @Body() updateShoplistDto: UpdateShoplistDto,
+    @Body('usersId') usersId: number,
+  ) {
+    const shoplistId = parseInt(id, 10);
+    return await this.ShoplistService.put(
+      shoplistId,
+      updateShoplistDto,
+      usersId,
+    );
+  }
 
-  //   @Patch(':id')
-  //   async partialUpdateshoplist(
-  //     @Param('id') id: string,
-  //     @Body() UpdateShoplistDto: UpdateShoplistDto,
-  //   ) {
-  //     const shoplistId = parseInt(id, 10);
-  //     return await this.ShoplistService.patch(shoplistId, UpdateShoplistDto);
-  //   }
+  @Patch(':id')
+  async partialUpdateshoplist(
+    @Param('id') id: string,
+    @Body() updateShoplistDto: UpdateShoplistDto,
+    @Body('usersId') usersId: number,
+  ) {
+    const shoplistId = parseInt(id, 10);
+    return await this.ShoplistService.patch(
+      shoplistId,
+      updateShoplistDto,
+      usersId,
+    );
+  }
 }

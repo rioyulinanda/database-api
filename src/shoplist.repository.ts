@@ -1,7 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateShoplistDto } from './dtos/create-shoplist.dto';
-import { UpdateShoplistDto } from './dtos/update-shoplist.dto';
-import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
@@ -25,23 +22,53 @@ export class ShoplistRepository {
     return shoplist;
   }
 
-  async post(data) {
+  async post(data, userId) {
     const { items, name } = data;
+    if (!userId) {
+      throw new Error('User ID is required.');
+    }
     const newShoplist = await this.prisma.shoplist.create({
       data: {
         items,
         name,
+        usersId: userId,
       },
     });
     return newShoplist;
   }
+
+  async delete(id: number) {
+    const shoplist = await this.prisma.shoplist.findUnique({
+      where: { id: +id },
+    });
+    if (!shoplist) {
+      throw new NotFoundException(`Item with ID ${id} not found.`);
+    }
+    await this.prisma.shoplist.delete({
+      where: { id: +id },
+    });
+    return shoplist;
+  }
+
+  async put(id: number, data, userId) {
+    const updatedShoplist = await this.prisma.shoplist.update({
+      where: { id: +id },
+      data: {
+        ...data,
+        user: { connect: { userId: userId } },
+      },
+    });
+    return updatedShoplist;
+  }
+
+  async updatePartialShoplist(id: number, data, userId) {
+    const updatedShoplist = await this.prisma.shoplist.update({
+      where: { id: +id },
+      data: {
+        ...data,
+        user: { connect: { userId: userId } },
+      },
+    });
+    return updatedShoplist;
+  }
 }
-
-//   async delete(id: number) {}
-
-//   async put(id: number, createShoplistDto: CreateShoplistDto) {}
-
-//   async updatePartialShoplist(
-//     id: number,
-//     updateShoplistDto: UpdateShoplistDto,
-//   ) {}

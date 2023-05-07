@@ -5,29 +5,37 @@ import { UpdateShoplistDto } from './dtos/update-shoplist.dto';
 
 @Injectable()
 export class ShoplistService {
-  constructor(private readonly shoplistRepo: ShoplistRepository) {}
+  constructor(private shoplistRepo: ShoplistRepository) {}
 
-  findOne(id: number) {
-    return this.shoplistRepo.findOne(id);
+  async post(createShoplistDto: CreateShoplistDto, usersId?: number) {
+    return this.shoplistRepo.post(createShoplistDto, usersId);
   }
 
-  get() {
+  async get() {
     return this.shoplistRepo.get();
   }
 
-  post(createMessageDto: CreateShoplistDto) {
-    return this.shoplistRepo.post(createMessageDto);
+  async findOne(id: number) {
+    return this.shoplistRepo.findOne(id);
   }
 
-  // delete(id: number) {
-  //   return this.shoplistRepo.delete(id);
-  // }
+  async delete(id: number) {
+    return this.shoplistRepo.delete(id);
+  }
 
-  // put(id: number, updateShoplistDto: UpdateShoplistDto) {
-  //   return this.shoplistRepo.put(id, updateShoplistDto);
-  // }
+  async put(id: number, updateShoplistDto: UpdateShoplistDto, usersId: number) {
+    return this.shoplistRepo.put(id, updateShoplistDto, usersId);
+  }
 
-  // patch(id: number, updateShoplistDto: UpdateShoplistDto) {
-  //   return this.shoplistRepo.updatePartialShoplist(id, updateShoplistDto);
-  // }
+  async patch(
+    id: number,
+    updateShoplistDto: UpdateShoplistDto,
+    usersId: number,
+  ) {
+    return this.shoplistRepo.updatePartialShoplist(
+      id,
+      updateShoplistDto,
+      usersId,
+    );
+  }
 }

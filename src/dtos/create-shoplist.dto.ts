@@ -1,14 +1,21 @@
-import { IsString, IsNumber, IsNotEmpty, IsDateString } from 'class-validator';
+import {
+  IsString,
+  IsNumber,
+  IsNotEmpty,
+  IsDateString,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateShoplistDto {
-  @IsString()
-  items: string;
+  @IsString({ each: true })
+  items: string[];
 
   @IsString()
   name: string;
 
+  @IsOptional()
   @IsNumber()
-  usersId: number;
+  usersId?: number;
 
   @IsNotEmpty()
   @IsDateString()

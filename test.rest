@@ -11,31 +11,50 @@ Authorization: Bearer my-auth-token
 
 {
   "items": "Vegetables",
-  "name": "Spinach",
-  "usersId": 6
+  "name": "Carrot",
+  "usersId": 1
 }
 
 
 
 ### DELETE
-DELETE http://localhost:3000/shoplist/6
+DELETE http://localhost:3000/shoplist/7
 
 ### PUT
-PUT http://localhost:3000/shoplist/5
+PUT http://localhost:3000/shoplist/3
 Content-Type: application/json
 Authorization: Bearer my-auth-token
 
 {
-  "id": 5,
-  "name": "Tenderloin Beef",
-  "items": "Meat"
+  "id": 3,
+  "name": "Chicken Breast",
+  "items": "Meat",
+  "usersId": 1
 }
 
 ### PATCH
-PATCH http://localhost:3000/shoplist/4
+PATCH http://localhost:3000/shoplist/15
 Content-Type: application/json
 Authorization: Bearer my-auth-token
 
 {
-  "name": "Strawberry"
+  "name": "Beansprout"
+}
+
+
+### GET
+GET http://localhost:3000/users
+
+### GET BY ID
+GET http://localhost:3000/users/1
+
+### POST
+POST http://localhost:3000/users/
+Content-Type: application/json
+Authorization: Bearer my-auth-token
+
+{
+  "name": "Shelby",
+  "email": "shelby@yahoo.com",
+  "usersId": 1
 }

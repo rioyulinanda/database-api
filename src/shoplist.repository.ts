@@ -13,7 +13,7 @@ export class ShoplistRepository {
     const shoplist = await this.prisma.shoplist.findUnique({
       where: { id: +id },
       include: {
-        users: true,
+        user: true,
       },
     });
     if (!shoplist) {
@@ -22,16 +22,17 @@ export class ShoplistRepository {
     return shoplist;
   }
 
-  async post(data, userId) {
-    const { items, name } = data;
-    if (!userId) {
+  async post(data) {
+    const { items, name, usersId } = data;
+    console.log(data);
+    if (!usersId) {
       throw new Error('User ID is required.');
     }
     const newShoplist = await this.prisma.shoplist.create({
       data: {
         items,
         name,
-        usersId: userId,
+        usersId,
       },
     });
     return newShoplist;
@@ -50,23 +51,23 @@ export class ShoplistRepository {
     return shoplist;
   }
 
-  async put(id: number, data, userId) {
+  async put(id: number, data: any, userId: number) {
     const updatedShoplist = await this.prisma.shoplist.update({
-      where: { id: +id },
+      where: { id: id },
       data: {
         ...data,
-        user: { connect: { userId: userId } },
+        usersId: userId,
       },
     });
     return updatedShoplist;
   }
 
-  async updatePartialShoplist(id: number, data, userId) {
+  async updatePartialShoplist(id: number, data: any, userId: number) {
     const updatedShoplist = await this.prisma.shoplist.update({
-      where: { id: +id },
+      where: { id: id },
       data: {
         ...data,
-        user: { connect: { userId: userId } },
+        usersId: userId,
       },
     });
     return updatedShoplist;

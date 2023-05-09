@@ -7,8 +7,8 @@ import { UpdateShoplistDto } from './dtos/update-shoplist.dto';
 export class ShoplistService {
   constructor(private shoplistRepo: ShoplistRepository) {}
 
-  async post(createShoplistDto: CreateShoplistDto, usersId?: number) {
-    return this.shoplistRepo.post(createShoplistDto, usersId);
+  async post(createShoplistDto: CreateShoplistDto) {
+    return this.shoplistRepo.post(createShoplistDto);
   }
 
   async get() {

@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { IsString, IsOptional, IsDateString } from 'class-validator';
+import { IsString, IsOptional, IsDateString, IsNumber } from 'class-validator';
 
 export class UpdateShoplistDto {
   @IsOptional()
@@ -13,4 +13,8 @@ export class UpdateShoplistDto {
   @IsOptional()
   @IsDateString()
   createdAt?: Date;
+
+  @IsOptional()
+  @IsNumber()
+  usersId?: number;
 }

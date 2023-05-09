@@ -51,10 +51,8 @@ GET http://localhost:3000/users/1
 ### POST
 POST http://localhost:3000/users/
 Content-Type: application/json
-Authorization: Bearer my-auth-token
 
 {
   "name": "Shelby",
   "email": "shelby@yahoo.com",
-  "usersId": 1
 }

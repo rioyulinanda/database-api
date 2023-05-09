@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UsersRepository {
-  constructor(private readonly prisma: PrismaClient) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async post(data: any) {
     const newUser = await this.prisma.user.create({ data });

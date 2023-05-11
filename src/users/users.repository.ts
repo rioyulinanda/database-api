@@ -10,12 +10,12 @@ export class UsersRepository {
     return newUser;
   }
 
-  async findOne(id: number) {
+  async findOne(email: string) {
     const user = await this.prisma.user.findUnique({
-      where: { id: +id },
+      where: { email },
     });
     if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found.`);
+      throw new NotFoundException(`User with email ${email} not found.`);
     }
     return user;
   }

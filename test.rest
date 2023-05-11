@@ -56,3 +56,11 @@ Content-Type: application/json
   "name": "shelby",
   "email": "shelby@yahoo.com"
 }
+
+### POST
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+{
+    "username": "abc",
+    "password": "123"
+}
